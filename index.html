@@ -1,0 +1,346 @@
+
+<h2 class="sr-only">Diagnóstico fiscal integrado — Olinda e Petrolina (PE), 2016–2025</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);font-size:13px;color:var(--color-text-primary)}
+
+.hdr{background:#1a3a5c;padding:14px 18px;border-radius:var(--border-radius-lg);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.hdr-title{font-size:16px;font-weight:500;color:#fff}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
+.hdr-badges{display:flex;gap:6px}
+.hbadge{font-size:10px;padding:3px 10px;border-radius:20px;font-weight:500;border:1px solid rgba(255,255,255,.35);color:#fff}
+
+.nav-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}
+
+.nav-btn{
+  border:none;cursor:pointer;border-radius:var(--border-radius-lg);
+  padding:12px 10px 10px;text-align:left;transition:opacity .15s,transform .1s;
+  position:relative;overflow:hidden;
+}
+.nav-btn:hover{opacity:.88;transform:translateY(-1px)}
+.nav-btn:active{transform:scale(.97)}
+.nav-btn.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.6)}
+.nav-btn i{font-size:22px;color:rgba(255,255,255,.9);display:block;margin-bottom:6px}
+.nav-btn .nl{font-size:12px;font-weight:500;color:#fff;display:block;margin-bottom:1px}
+.nav-btn .nd{font-size:10px;color:rgba(255,255,255,.7);display:block}
+
+.c1{background:#1a6fc4}.c2{background:#2d7d46}.c3{background:#7c3d9e}.c4{background:#c45c1a}.c5{background:#1a6f80}
+
+.section{display:none}.section.active{display:block}
+
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:14px}
+
+.kpi{border-radius:var(--border-radius-md);padding:12px 14px;color:#fff}
+.kpi .kl{font-size:10px;opacity:.8;margin-bottom:3px}
+.kpi .kv{font-size:22px;font-weight:500;line-height:1}
+.kpi .kd{font-size:10px;opacity:.75;margin-top:3px}
+.k1{background:#1a6fc4}.k2{background:#c45c1a}.k3{background:#2d7d46}.k4{background:#2d7d46}
+.k5{background:#1a3a5c}.k6{background:#1a3a5c}.k7{background:#a32d2d}.k8{background:#3b6d11}
+
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px}
+.ctitle{font-size:13px;font-weight:500;margin-bottom:3px}
+.csub{font-size:11px;color:var(--color-text-secondary);margin-bottom:8px}
+
+.leg{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--color-text-secondary);margin-bottom:8px}
+.leg span{display:flex;align-items:center;gap:4px}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+
+.insight{border-left:3px solid #1a6fc4;padding:8px 12px;font-size:12px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6;border-radius:0;background:var(--color-background-secondary)}
+
+.mrow{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.mlbl{width:68px;font-size:11px;color:var(--color-text-secondary);text-align:right;flex-shrink:0}
+.mtrk{flex:1;height:7px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden}
+.mfil{height:100%;border-radius:4px}
+.mval{width:48px;font-size:11px;font-variant-numeric:tabular-nums}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:5px 8px;text-align:left;font-weight:500;font-size:10px;color:var(--color-text-secondary);border-bottom:.5px solid var(--color-border-tertiary)}
+td{padding:5px 8px;border-bottom:.5px solid var(--color-border-tertiary)}
+tr:last-child td{border-bottom:none}
+.tr{text-align:right;font-variant-numeric:tabular-nums}
+.tg{color:#2d7d46;font-weight:500}.trd{color:#b83232;font-weight:500}
+.tbl{color:#185fa5}.tor{color:#854f0b}
+</style>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-title">Diagnóstico Fiscal Integrado — PE</div>
+    <div class="hdr-sub">Questão 10 · SICONFI/STN · IBGE · 2016–2025</div>
+  </div>
+  <div class="hdr-badges">
+    <span class="hbadge">Olinda</span>
+    <span class="hbadge">Petrolina</span>
+  </div>
+</div>
+
+<div class="nav-row">
+  <button class="nav-btn c1 active" onclick="setTab('visao',this)">
+    <i class="ti ti-layout-dashboard" aria-hidden="true"></i>
+    <span class="nl">Visão geral</span>
+    <span class="nd">KPIs e panorama</span>
+  </button>
+  <button class="nav-btn c2" onclick="setTab('evolucao',this)">
+    <i class="ti ti-chart-line" aria-hidden="true"></i>
+    <span class="nl">Evolução fiscal</span>
+    <span class="nd">Saldo e variação</span>
+  </button>
+  <button class="nav-btn c3" onclick="setTab('regressao',this)">
+    <i class="ti ti-chart-dots" aria-hidden="true"></i>
+    <span class="nl">PIB × Receita</span>
+    <span class="nd">Regressão OLS</span>
+  </button>
+  <button class="nav-btn c4" onclick="setTab('composicao',this)">
+    <i class="ti ti-chart-pie" aria-hidden="true"></i>
+    <span class="nl">Composição</span>
+    <span class="nd">Fontes de receita</span>
+  </button>
+  <button class="nav-btn c5" onclick="setTab('ranking',this)">
+    <i class="ti ti-award" aria-hidden="true"></i>
+    <span class="nl">Ranking PE</span>
+    <span class="nd">Per capita estadual</span>
+  </button>
+</div>
+
+<div id="tab-visao" class="section active">
+  <div class="kpi-row">
+    <div class="kpi k1"><div class="kl">Receita 2025 — Olinda</div><div class="kv">R$1,25bi</div><div class="kd">+98% vs 2016 (nominal)</div></div>
+    <div class="kpi k2"><div class="kl">Receita 2025 — Petrolina</div><div class="kv">R$1,95bi</div><div class="kd">+203% vs 2016 (nominal)</div></div>
+    <div class="kpi k3"><div class="kl">Saldo real médio — Olinda</div><div class="kv">R$64mi</div><div class="kd">Superávit em todos os anos</div></div>
+    <div class="kpi k4"><div class="kl">Saldo real médio — Petrolina</div><div class="kv">R$91mi</div><div class="kd">Superávit em todos os anos</div></div>
+    <div class="kpi k5"><div class="kl">β1 regressão — Olinda</div><div class="kv">0,273</div><div class="kd">R²= 89,7%</div></div>
+    <div class="kpi k6"><div class="kl">β1 regressão — Petrolina</div><div class="kv">0,222</div><div class="kd">R²= 96,7%</div></div>
+    <div class="kpi k7"><div class="kl">Rec. per capita — Olinda</div><div class="kv">R$3,4k</div><div class="kd">149º/163 municípios PE</div></div>
+    <div class="kpi k8"><div class="kl">Rec. per capita — Ipojuca</div><div class="kv">R$21,1k</div><div class="kd">1º de PE (2025)</div></div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Receita e despesa reais — 2016–2025 (R$ mi, base 2016)</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#1a6fc4"></span>Olinda receita</span>
+      <span><span class="ld" style="background:#1a6fc4;opacity:.4"></span>Olinda despesa</span>
+      <span><span class="ld" style="background:#c45c1a"></span>Petrolina receita</span>
+      <span><span class="ld" style="background:#c45c1a;opacity:.4"></span>Petrolina despesa</span>
+    </div>
+    <div style="position:relative;width:100%;height:250px"><canvas id="cv0" role="img" aria-label="Evolução receitas e despesas reais Olinda e Petrolina 2016–2025">Olinda: 628→766mi. Petrolina: 645→1200mi.</canvas></div>
+  </div>
+  <div class="insight">Ambos mantiveram superávit em todo o período. Petrolina cresceu mais de 3× em receita nominal. Olinda tem receita per capita entre as menores de PE (R$3,4k), sinalizando pressão sobre a capacidade de investimento.</div>
+</div>
+
+<div id="tab-evolucao" class="section">
+  <div class="two">
+    <div class="card">
+      <div class="ctitle">Saldo fiscal real — Olinda (R$ mi)</div>
+      <div class="csub">base 2016</div>
+      <div style="position:relative;width:100%;height:170px"><canvas id="cv1" role="img" aria-label="Saldo fiscal real Olinda">Superávit todos os anos, pico 2020.</canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Saldo fiscal real — Petrolina (R$ mi)</div>
+      <div class="csub">base 2016</div>
+      <div style="position:relative;width:100%;height:170px"><canvas id="cv2" role="img" aria-label="Saldo fiscal real Petrolina">Superávit todos os anos, pico 2023.</canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Índice receita/despesa — cobertura da despesa pela receita</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#1a6fc4"></span>Olinda</span>
+      <span><span class="ld" style="background:#c45c1a"></span>Petrolina</span>
+      <span><span class="ld" style="background:#888;opacity:.5"></span>Equilíbrio (1,00)</span>
+    </div>
+    <div style="position:relative;width:100%;height:190px"><canvas id="cv3" role="img" aria-label="Índice receita sobre despesa">Ambos acima de 1,00 em todo o período.</canvas></div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Variação real anual da receita (%)</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#1a6fc4"></span>Olinda</span>
+      <span><span class="ld" style="background:#c45c1a"></span>Petrolina</span>
+    </div>
+    <div style="position:relative;width:100%;height:170px"><canvas id="cv4" role="img" aria-label="Variação anual real da receita">Aceleração em 2022, desaceleração em 2023.</canvas></div>
+  </div>
+  <div class="insight">Pico de saldo de Olinda em 2020 (R$95mi) reflete transferências emergenciais pandêmicas. Petrolina atingiu seu maior saldo em 2023 (R$132mi). A queda do índice receita/despesa de Olinda em 2023–2025 sinaliza rigidez crescente das despesas.</div>
+</div>
+
+<div id="tab-regressao" class="section">
+  <div class="two">
+    <div class="card">
+      <div class="ctitle">Dispersão PIB × Receita — Olinda</div>
+      <div class="csub">R² = 89,7% · β1 = 0,2732 · p = 0,0004</div>
+      <div style="position:relative;width:100%;height:190px"><canvas id="cv5" role="img" aria-label="Dispersão PIB receita Olinda">Relação positiva forte.</canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Dispersão PIB × Receita — Petrolina</div>
+      <div class="csub">R² = 96,7% · β1 = 0,2216 · p &lt; 0,0001</div>
+      <div style="position:relative;width:100%;height:190px"><canvas id="cv6" role="img" aria-label="Dispersão PIB receita Petrolina">Relação quase linear.</canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Resíduos da regressão — observado vs estimado (R$ mi)</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#1a6fc4"></span>Olinda</span>
+      <span><span class="ld" style="background:#c45c1a"></span>Petrolina</span>
+    </div>
+    <div style="position:relative;width:100%;height:180px"><canvas id="cv7" role="img" aria-label="Resíduos da regressão">Olinda com resíduo positivo em 2020.</canvas></div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Comparativo dos parâmetros</div>
+    <table>
+      <thead><tr><th>Parâmetro</th><th style="text-align:right">Olinda</th><th style="text-align:right">Petrolina</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td>β0 — Intercepto</td><td class="tr">−784,54</td><td class="tr">−652,62</td><td style="color:var(--color-text-secondary)">Sem sentido prático</td></tr>
+        <tr><td>β1 — Coef. PIB</td><td class="tr tbl">0,2732</td><td class="tr tor">0,2216</td><td>R$ por R$1mi de PIB</td></tr>
+        <tr><td>R²</td><td class="tr tbl">89,7%</td><td class="tr tor">96,7%</td><td>Ajuste excelente</td></tr>
+        <tr><td>p-valor β1</td><td class="tr tg">0,0004</td><td class="tr tg">&lt;0,0001</td><td>Significativo a 5%</td></tr>
+        <tr><td>Receita / R$1bi PIB</td><td class="tr">R$273mi</td><td class="tr">R$222mi</td><td>Olinda capta mais</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="insight">Olinda tem β1 maior — maior sensibilidade ao crescimento local (ISS, IPTU). Petrolina tem R²=96,7%, trajetória mais linear e previsível. Crescimento de R$1bi no PIB gera R$273mi em Olinda e R$222mi em Petrolina.</div>
+</div>
+
+<div id="tab-composicao" class="section">
+  <div class="two">
+    <div class="card">
+      <div class="ctitle">Composição da receita — Olinda 2025</div>
+      <div style="position:relative;width:100%;height:200px"><canvas id="cv8" role="img" aria-label="Composição receita Olinda 2025">Transferências 62%, Tributária 25%.</canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Composição da receita — Petrolina 2025</div>
+      <div style="position:relative;width:100%;height:200px"><canvas id="cv9" role="img" aria-label="Composição receita Petrolina 2025">Transferências 58%, Tributária 22%.</canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Receita tributária própria — evolução nominal (R$ mi)</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#1a6fc4"></span>Olinda</span>
+      <span><span class="ld" style="background:#c45c1a"></span>Petrolina</span>
+    </div>
+    <div style="position:relative;width:100%;height:190px"><canvas id="cv10" role="img" aria-label="Evolução receita tributária própria">Petrolina acelera a partir de 2018.</canvas></div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Dependência de transferências correntes (% da receita corrente)</div>
+    <div style="margin-top:.5rem">
+      <div class="mrow"><div class="mlbl">Oli 2016</div><div class="mtrk"><div class="mfil" style="width:68.5%;background:#1a6fc4"></div></div><div class="mval tbl">68,5%</div></div>
+      <div class="mrow"><div class="mlbl">Oli 2025</div><div class="mtrk"><div class="mfil" style="width:62.3%;background:#1a6fc4;opacity:.55"></div></div><div class="mval tbl">62,3%</div></div>
+      <div class="mrow"><div class="mlbl">Pet 2016</div><div class="mtrk"><div class="mfil" style="width:73.6%;background:#c45c1a"></div></div><div class="mval tor">73,6%</div></div>
+      <div class="mrow"><div class="mlbl">Pet 2025</div><div class="mtrk"><div class="mfil" style="width:58.5%;background:#c45c1a;opacity:.55"></div></div><div class="mval tor">58,5%</div></div>
+    </div>
+  </div>
+  <div class="insight">Petrolina reduziu dependência de transferências em 15pp — fortalecimento da base tributária própria. Olinda avançou menos (−6pp), mantendo maior vulnerabilidade a mudanças nos repasses federais.</div>
+</div>
+
+<div id="tab-ranking" class="section">
+  <div class="kpi-row">
+    <div class="kpi k1"><div class="kl">Municípios mapeados</div><div class="kv">163</div><div class="kd">Pernambuco 2025</div></div>
+    <div class="kpi k5"><div class="kl">Média per capita PE</div><div class="kv">R$6,7k</div><div class="kd">Mediana: R$6,4k</div></div>
+    <div class="kpi k8"><div class="kl">Maior — Ipojuca</div><div class="kv">R$21,1k</div><div class="kd">Polo petroquímico</div></div>
+    <div class="kpi k7"><div class="kl">Menor — Paulista</div><div class="kv">R$2,8k</div><div class="kd">Município dormitório</div></div>
+  </div>
+  <div class="card">
+    <div class="ctitle">Top 10 maiores e 10 menores receitas per capita — PE (2025)</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#2d7d46"></span>Maior rec. p.c.</span>
+      <span><span class="ld" style="background:#b83232"></span>Menor rec. p.c.</span>
+      <span><span class="ld" style="background:#1a6fc4"></span>Olinda (destaque)</span>
+    </div>
+    <div style="position:relative;width:100%;height:520px"><canvas id="cv11" role="img" aria-label="Ranking receita per capita PE 2025">Ipojuca lidera R$21k. Olinda 149º com R$3,4k.</canvas></div>
+  </div>
+  <div class="insight">Olinda ocupa a 149ª posição entre 163 municípios de PE (R$3,4k), bem abaixo da média estadual (R$6,7k). Petrolina situa-se em posição intermediária, beneficiada pelo PIB agropecuário e base econômica diversificada.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function setTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const anos=['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+const anos8=['2016','2017','2018','2019','2020','2021','2022','2023'];
+const rOR=[628.62,609.32,645.28,650.08,676.70,662.49,735.88,729.65,781.92,766.29];
+const dOR=[569.81,548.08,594.70,610.11,580.93,587.79,651.11,690.79,726.42,686.04];
+const rPR=[645.15,650.59,709.35,759.99,839.46,940.27,985.51,1095.02,1128.10,1200.58];
+const dPR=[581.09,572.85,664.29,730.35,727.80,828.23,902.47,962.62,1024.22,1145.38];
+const sO=rOR.map((r,i)=>+(r-dOR[i]).toFixed(2));
+const sP=rPR.map((r,i)=>+(r-dPR[i]).toFixed(2));
+const iO=rOR.map((r,i)=>+(r/dOR[i]).toFixed(3));
+const iP=rPR.map((r,i)=>+(r/dPR[i]).toFixed(3));
+const vO=[null,...rOR.slice(1).map((r,i)=>+((r/rOR[i]-1)*100).toFixed(1))];
+const vP=[null,...rPR.slice(1).map((r,i)=>+((r/rPR[i]-1)*100).toFixed(1))];
+const pO=[5271.21,5437.64,5534.2,5524.36,5414.45,5788.25,6430.54,7024.92];
+const pP=[5764.62,5988.82,6686.07,7137.56,7079.38,7994.04,8834.26,10577.53];
+const roO=[628.62,627.29,688.58,721.27,780.91,837.46,1031.99,1088.71];
+const roP=[645.15,669.78,756.95,843.20,968.74,1188.60,1382.08,1633.88];
+const reO=[655.29,700.75,727.13,724.44,694.42,796.52,971.97,1134.32];
+const reP=[624.8,674.5,829.0,929.0,916.1,1118.8,1305.0,1691.3];
+const rsO=roO.map((r,i)=>+(r-reO[i]).toFixed(1));
+const rsP=roP.map((r,i)=>+(r-reP[i]).toFixed(1));
+const tO=[116.0,124.8,144.6,165.4,148.8,169.9,215.1,248.9,284.6,294.9];
+const tP=[82.4,89.7,120.8,143.9,138.4,177.9,228.9,283.2,316.1,361.1];
+
+const BL='#1a6fc4',BL2='rgba(26,111,196,.12)',BL3='rgba(26,111,196,.55)';
+const OR='#c45c1a',OR2='rgba(196,92,26,.12)',OR3='rgba(196,92,26,.55)';
+const GN='#2d7d46',RD='#b83232',GY='#888780';
+
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{x:{grid:{display:false},ticks:{font:{size:10}}},
+          y:{grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:10}}}}};
+
+new Chart(document.getElementById('cv0'),{type:'line',data:{labels:anos,datasets:[
+  {label:'Olinda receita',data:rOR,borderColor:BL,borderWidth:2,pointRadius:3,fill:false,backgroundColor:'transparent'},
+  {label:'Olinda despesa',data:dOR,borderColor:BL,borderDash:[5,3],borderWidth:1.5,pointRadius:2,fill:false,backgroundColor:'transparent'},
+  {label:'Petrolina receita',data:rPR,borderColor:OR,borderWidth:2,pointRadius:3,fill:false,backgroundColor:'transparent'},
+  {label:'Petrolina despesa',data:dPR,borderColor:OR,borderDash:[5,3],borderWidth:1.5,pointRadius:2,fill:false,backgroundColor:'transparent'}
+]},options:{...base,scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:10},callback:v=>'R$'+v}}}}});
+
+const bOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' R$'+c.parsed.y.toFixed(1)+'mi'}}},
+  scales:{x:{grid:{display:false},ticks:{font:{size:9},maxRotation:45}},y:{grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:9},callback:v=>v+'mi'}}}};
+new Chart(document.getElementById('cv1'),{type:'bar',data:{labels:anos,datasets:[{label:'Saldo',data:sO,backgroundColor:sO.map(v=>v>=0?GN:RD),borderRadius:3}]},options:bOpts});
+new Chart(document.getElementById('cv2'),{type:'bar',data:{labels:anos,datasets:[{label:'Saldo',data:sP,backgroundColor:sP.map(v=>v>=0?GN:RD),borderRadius:3}]},options:bOpts});
+
+new Chart(document.getElementById('cv3'),{type:'line',data:{labels:anos,datasets:[
+  {label:'Olinda',data:iO,borderColor:BL,borderWidth:2,pointRadius:3,fill:false,backgroundColor:'transparent'},
+  {label:'Petrolina',data:iP,borderColor:OR,borderWidth:2,pointRadius:3,fill:false,backgroundColor:'transparent'},
+  {label:'Equilíbrio',data:anos.map(()=>1),borderColor:GY,borderDash:[4,4],borderWidth:1,pointRadius:0,fill:false,backgroundColor:'transparent'}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{min:.9,grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:10}}}}}});
+
+new Chart(document.getElementById('cv4'),{type:'bar',data:{labels:anos,datasets:[
+  {label:'Olinda',data:vO,backgroundColor:BL3,borderRadius:3},
+  {label:'Petrolina',data:vP,backgroundColor:OR3,borderRadius:3}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:10},callback:v=>v+'%'}}}}});
+
+function scatter(id,pib,obs,est,col){
+  new Chart(document.getElementById(id),{type:'scatter',data:{datasets:[
+    {label:'Observado',data:pib.map((x,i)=>({x,y:obs[i]})),backgroundColor:col,pointRadius:5,pointHoverRadius:7},
+    {label:'Regressão',data:[...pib.map((x,i)=>({x,y:est[i]}))].sort((a,b)=>a.x-b.x),type:'line',borderColor:RD,borderWidth:1.5,pointRadius:0,fill:false,backgroundColor:'transparent'}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{title:{display:true,text:'PIB (R$ mi)',font:{size:9}},grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:9},callback:v=>v.toLocaleString('pt-BR')}},
+            y:{title:{display:true,text:'Receita (R$ mi)',font:{size:9}},grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:9},callback:v=>v.toLocaleString('pt-BR')}}}}});
+}
+scatter('cv5',pO,roO,reO,BL);
+scatter('cv6',pP,roP,reP,OR);
+
+new Chart(document.getElementById('cv7'),{type:'bar',data:{labels:anos8,datasets:[
+  {label:'Olinda',data:rsO,backgroundColor:rsO.map(v=>v>=0?BL:BL3),borderRadius:3},
+  {label:'Petrolina',data:rsP,backgroundColor:rsP.map(v=>v>=0?OR:OR3),borderRadius:3}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:10},callback:v=>v+'mi'}}}}});
+
+new Chart(document.getElementById('cv8'),{type:'doughnut',data:{labels:['Transferências','Tributária','Contribuições','Patrimonial','Outros'],datasets:[{data:[62.3,25.4,6.3,3.5,2.5],backgroundColor:[BL,'#378add','#85b7eb','#b5d4f4','#d4e8f8'],borderWidth:1.5,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10,padding:8}}}}});
+new Chart(document.getElementById('cv9'),{type:'doughnut',data:{labels:['Transferências','Tributária','Serviços','Patrimonial','Outros'],datasets:[{data:[58.5,21.9,3.1,5.4,11.1],backgroundColor:[OR,'#e07840','#e8a060','#f0c080','#f8e0b0'],borderWidth:1.5,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:true,position:'right',labels:{font:{size:10},boxWidth:10,padding:8}}}}});
+
+new Chart(document.getElementById('cv10'),{type:'line',data:{labels:anos,datasets:[
+  {label:'Olinda',data:tO,borderColor:BL,backgroundColor:BL2,borderWidth:2,pointRadius:3,fill:true},
+  {label:'Petrolina',data:tP,borderColor:OR,backgroundColor:OR2,borderWidth:2,pointRadius:3,fill:true}
+]},options:{...base,scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:10},callback:v=>'R$'+v+'mi'}}}}});
+
+const rkL=['Ipojuca','Itacuruba','Salgadinho','Calumbi','Solidão','Quixaba','Goiana','Machados','V. Lério','Lupi','Paulista','Olinda','Jaboatão','S.L. Mata','Abreu Lima','Ouricuri','Nazaré','Caruaru','Arcoverde','Igarassu'];
+const rkD=[21142,12741,12145,12078,11899,11109,11065,9650,9530,9100,2774,3407,3720,3810,4010,4150,4200,4500,4550,4600];
+const rkC=[...Array(10).fill(GN),RD,BL,...Array(8).fill(RD)];
+new Chart(document.getElementById('cv11'),{type:'bar',data:{labels:rkL,datasets:[{label:'Rec. per capita',data:rkD,backgroundColor:rkC,borderRadius:3,indexAxis:'y'}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' R$'+c.parsed.x.toLocaleString('pt-BR')}}},
+    scales:{x:{grid:{color:'rgba(128,128,128,.1)'},ticks:{font:{size:9},callback:v=>'R$'+(v/1000).toFixed(0)+'k'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}});
+</script>
